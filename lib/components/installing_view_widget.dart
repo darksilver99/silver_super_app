@@ -92,7 +92,8 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    context.goNamed('HomePage');
+                    //context.goNamed('HomePage');
+                    context.pushReplacementNamed('HomePage');
                   },
                   text: 'Success',
                   options: FFButtonOptions(
