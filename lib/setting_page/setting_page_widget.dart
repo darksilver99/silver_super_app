@@ -1,5 +1,3 @@
-import 'package:silver_super_app/custom_toon/custom_toon.dart';
-
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/installing_view_widget.dart';
@@ -52,7 +50,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -77,11 +77,13 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   title: Text('Logout?'),
                                   actions: [
                                     TextButton(
-                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, false),
                                       child: Text('Cancel'),
                                     ),
                                     TextButton(
-                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                      onPressed: () => Navigator.pop(
+                                          alertDialogContext, true),
                                       child: Text('Confirm'),
                                     ),
                                   ],
@@ -94,7 +96,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          _navigate = () => context.goNamedAuth('LoginPage', context.mounted);
+                          _navigate = () =>
+                              context.goNamedAuth('LoginPage', context.mounted);
                         } else {
                           setState(() {});
                         }
@@ -107,14 +110,17 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         size: 14.0,
                       ),
                       options: FFButtonOptions(
-                        padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
-                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Space Grotesk',
-                              color: Colors.white,
-                              fontSize: 12.0,
-                            ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Space Grotesk',
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                ),
                         elevation: 3.0,
                         borderSide: BorderSide(
                           color: Colors.transparent,
@@ -164,10 +170,12 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                             ),
                           );
                         }
-                        List<AppListRecord> gridViewAppListRecordList = snapshot.data!;
+                        List<AppListRecord> gridViewAppListRecordList =
+                            snapshot.data!;
                         return GridView.builder(
                           padding: EdgeInsets.zero,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             crossAxisSpacing: 10.0,
                             mainAxisSpacing: 10.0,
@@ -176,7 +184,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           scrollDirection: Axis.vertical,
                           itemCount: gridViewAppListRecordList.length,
                           itemBuilder: (context, gridViewIndex) {
-                            final gridViewAppListRecord = gridViewAppListRecordList[gridViewIndex];
+                            final gridViewAppListRecord =
+                                gridViewAppListRecordList[gridViewIndex];
                             return Builder(
                               builder: (context) => InkWell(
                                 splashColor: Colors.transparent,
@@ -184,35 +193,30 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  var installData = isInstall(gridViewAppListRecord.url);
-                                  if (installData != null) {
-                                    context.pushNamed(
-                                      'MiniAppPage',
-                                      queryParameters: {
-                                        'appName': serializeParam(
-                                          installData["appName"],
-                                          ParamType.String,
-                                        ),
-                                        'appPath': serializeParam(
-                                          installData["appPath"],
-                                          ParamType.String,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                    return;
-                                  }
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
                                       return Dialog(
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
-                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
                                         child: GestureDetector(
-                                          onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
                                           child: InstallingViewWidget(
                                             url: gridViewAppListRecord.url,
-                                            appName: gridViewAppListRecord.appName,
+                                            appName:
+                                                gridViewAppListRecord.appName,
+                                            appIcon:
+                                                gridViewAppListRecord.appIcon,
                                           ),
                                         ),
                                       );
@@ -228,16 +232,20 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         color: Colors.transparent,
                                         elevation: 3.0,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8.0),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
                                         child: Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context).secondaryBackground,
-                                            borderRadius: BorderRadius.circular(8.0),
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
                                           child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(8.0),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                             child: Image.network(
                                               gridViewAppListRecord.appIcon,
                                               fit: BoxFit.cover,
@@ -247,11 +255,13 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         gridViewAppListRecord.appName,
                                         maxLines: 1,
-                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
                                       ),
                                     ),
                                   ],
