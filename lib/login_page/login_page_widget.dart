@@ -227,6 +227,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               !_model.formKey.currentState!.validate()) {
                             return;
                           }
+                          FFAppState().installedList = [];
                           GoRouter.of(context).prepareAuthEvent();
 
                           final user = await authManager.signInWithEmail(
