@@ -208,21 +208,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) =>
-                                      safeSetState(() => _model.rs = value));
-
-                                  if ((_model.rs != null) && _model.rs!) {
-                                    setState(() {
-                                      FFAppState().installedList = FFAppState()
-                                          .testObject
-                                          .toList()
-                                          .cast<dynamic>();
-                                    });
-
-                                    context.goNamed('HomePage');
-                                  }
-
-                                  setState(() {});
+                                  ).then((value) => setState(() {}));
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
