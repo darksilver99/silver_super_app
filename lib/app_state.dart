@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -48,56 +50,56 @@ class FFAppState extends ChangeNotifier {
 
   String _test = '';
   String get test => _test;
-  set test(String value) {
-    _test = value;
+  set test(String _value) {
+    _test = _value;
   }
 
   List<dynamic> _installedList = [];
   List<dynamic> get installedList => _installedList;
-  set installedList(List<dynamic> value) {
-    _installedList = value;
+  set installedList(List<dynamic> _value) {
+    _installedList = _value;
     prefs.setStringList(
-        'ff_installedList', value.map((x) => jsonEncode(x)).toList());
+        'ff_installedList', _value.map((x) => jsonEncode(x)).toList());
   }
 
-  void addToInstalledList(dynamic value) {
-    _installedList.add(value);
-    prefs.setStringList(
-        'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromInstalledList(dynamic value) {
-    _installedList.remove(value);
+  void addToInstalledList(dynamic _value) {
+    _installedList.add(_value);
     prefs.setStringList(
         'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
   }
 
-  void removeAtIndexFromInstalledList(int index) {
-    _installedList.removeAt(index);
+  void removeFromInstalledList(dynamic _value) {
+    _installedList.remove(_value);
+    prefs.setStringList(
+        'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeAtIndexFromInstalledList(int _index) {
+    _installedList.removeAt(_index);
     prefs.setStringList(
         'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
   }
 
   void updateInstalledListAtIndex(
-    int index,
+    int _index,
     dynamic Function(dynamic) updateFn,
   ) {
-    _installedList[index] = updateFn(_installedList[index]);
+    _installedList[_index] = updateFn(_installedList[_index]);
     prefs.setStringList(
         'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
   }
 
-  void insertAtIndexInInstalledList(int index, dynamic value) {
-    _installedList.insert(index, value);
+  void insertAtIndexInInstalledList(int _index, dynamic _value) {
+    _installedList.insert(_index, _value);
     prefs.setStringList(
         'ff_installedList', _installedList.map((x) => jsonEncode(x)).toList());
   }
 
   dynamic _testObject;
   dynamic get testObject => _testObject;
-  set testObject(dynamic value) {
-    _testObject = value;
-    prefs.setString('ff_testObject', jsonEncode(value));
+  set testObject(dynamic _value) {
+    _testObject = _value;
+    prefs.setString('ff_testObject', jsonEncode(_value));
   }
 }
 

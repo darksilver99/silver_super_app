@@ -6,12 +6,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'register_page_model.dart';
 export 'register_page_model.dart';
 
 class RegisterPageWidget extends StatefulWidget {
-  const RegisterPageWidget({super.key});
+  const RegisterPageWidget({Key? key}) : super(key: key);
 
   @override
   _RegisterPageWidgetState createState() => _RegisterPageWidgetState();
@@ -72,7 +73,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -89,14 +90,14 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Form(
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
@@ -114,7 +115,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.emailTextController,
                         focusNode: _model.textFieldFocusNode1,
@@ -151,7 +152,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.email_rounded,
                           ),
                         ),
@@ -163,7 +164,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.passwordTextController,
                         focusNode: _model.textFieldFocusNode2,
@@ -200,7 +201,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.key_rounded,
                           ),
                           suffixIcon: InkWell(
@@ -224,7 +225,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.confirmPasswordTextController,
                         focusNode: _model.textFieldFocusNode3,
@@ -261,7 +262,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefixIcon: const Icon(
+                          prefixIcon: Icon(
                             Icons.key_rounded,
                           ),
                           suffixIcon: InkWell(
@@ -285,7 +286,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           if (_model.formKey.currentState == null ||
@@ -296,7 +297,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                           if (_model.passwordTextController.text !=
                               _model.confirmPasswordTextController.text) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
+                              SnackBar(
                                 content: Text(
                                   'Passwords don\'t match!',
                                 ),
@@ -327,9 +328,9 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -338,7 +339,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                                     color: Colors.white,
                                   ),
                           elevation: 3.0,
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
