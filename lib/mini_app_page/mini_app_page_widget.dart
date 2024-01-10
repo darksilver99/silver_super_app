@@ -1,5 +1,6 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:silver_super_app/auth/firebase_auth/auth_util.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -121,27 +122,16 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
             onLoadStop: (controller, url) {
               print("onLoadStop : $url");
 
-              // เรียก function ของ webview จาก flutter
-              //controller.evaluateJavascript(source: 'onShow(){console.log("aaaa")}');
-              //controller.evaluateJavascript(source: 'alert("aaa")');
-              //controller.evaluateJavascript(source: 'window.flutter_inappwebview_channel_handler.onShow();');
               controller.addJavaScriptHandler(
-                handlerName: "onCreate",
-                callback: (args) {},
-              );
-
-              // เรียก function ของ flutter จาก webview
-              controller.addJavaScriptHandler(
-                handlerName: "flutterFunction",
+                handlerName: "getUserData",
                 callback: (args) async {
-                  /*print("From the JavaScript side:");
-                      print(args);
-                      print(args[0]);
-                      print(args[0].runtimeType);
-                      print(args[0]["aaa"]);*/
-                  return await getFlutterText();
+                  return {
+                    "email": currentUserDocument!.email,
+                    "uid": currentUserReference!.id,
+                  };
                 },
               );
+
             },
             onConsoleMessage: (controller, msg) {
               print("onConsoleMessage");
