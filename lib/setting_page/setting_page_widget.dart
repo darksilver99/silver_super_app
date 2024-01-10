@@ -213,6 +213,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                   .unfocus(),
                                           child: InstallingViewWidget(
                                             url: gridViewAppListRecord.url,
+                                            appName:
+                                                gridViewAppListRecord.appName,
                                           ),
                                         ),
                                       );
