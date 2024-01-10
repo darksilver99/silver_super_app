@@ -1,18 +1,18 @@
-import 'package:silver_super_app/custom_toon/custom_toon.dart';
-
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/installing_view_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'setting_page_model.dart';
 export 'setting_page_model.dart';
 
 class SettingPageWidget extends StatefulWidget {
-  const SettingPageWidget({super.key});
+  const SettingPageWidget({Key? key}) : super(key: key);
 
   @override
   _SettingPageWidgetState createState() => _SettingPageWidgetState();
@@ -59,7 +59,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -69,22 +69,22 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        Function() navigate = () {};
+                        Function() _navigate = () {};
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('Logout?'),
+                                  title: Text('Logout?'),
                                   actions: [
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, false),
-                                      child: const Text('Cancel'),
+                                      child: Text('Cancel'),
                                     ),
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, true),
-                                      child: const Text('Confirm'),
+                                      child: Text('Confirm'),
                                     ),
                                   ],
                                 );
@@ -96,24 +96,24 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          navigate = () =>
+                          _navigate = () =>
                               context.goNamedAuth('LoginPage', context.mounted);
                         } else {
                           setState(() {});
                         }
 
-                        navigate();
+                        _navigate();
                       },
                       text: 'Logout',
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.logout_rounded,
                         size: 14.0,
                       ),
                       options: FFButtonOptions(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -122,7 +122,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   fontSize: 12.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -132,7 +132,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Text(
                     'Available app',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -143,7 +143,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: StreamBuilder<List<AppListRecord>>(
                       stream: queryAppListRecord(),
                       builder: (context, snapshot) {
@@ -166,7 +166,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         return GridView.builder(
                           padding: EdgeInsets.zero,
                           gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             crossAxisSpacing: 10.0,
                             mainAxisSpacing: 10.0,
@@ -177,71 +177,94 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           itemBuilder: (context, gridViewIndex) {
                             final gridViewAppListRecord =
                                 gridViewAppListRecordList[gridViewIndex];
-                            return InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                // await launchURL(gridViewAppListRecord.url);
-                                var path = await checkPermission(gridViewAppListRecord.url);
-                                context.pushNamed(
-                                  'MiniAppPage',
-                                  queryParameters: {
-                                    'appName': serializeParam(
-                                      path["appName"],
-                                      ParamType.String,
-                                    ),
-                                    'appPath': serializeParam(
-                                      path["appPath"],
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
+                            return Builder(
+                              builder: (context) => InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InstallingViewWidget(),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) =>
+                                      safeSetState(() => _model.rs = value));
 
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Material(
-                                      color: Colors.transparent,
-                                      elevation: 3.0,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                  if ((_model.rs != null) && _model.rs!) {
+                                    setState(() {
+                                      FFAppState().installedList = FFAppState()
+                                          .testObject
+                                          .toList()
+                                          .cast<dynamic>();
+                                    });
+
+                                    context.goNamed('HomePage');
+                                  }
+
+                                  setState(() {});
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 3.0,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                         ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.network(
-                                            'https://images.unsplash.com/photo-1558050032-160f36233a07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxtZWNoYW5pY2FsJTIwa2V5Ym9hcmR8ZW58MHx8fHwxNzA0NzgwMDY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                            fit: BoxFit.cover,
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              'https://images.unsplash.com/photo-1558050032-160f36233a07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxtZWNoYW5pY2FsJTIwa2V5Ym9hcmR8ZW58MHx8fHwxNzA0NzgwMDY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
-                                    child: Text(
-                                      gridViewAppListRecord.appName,
-                                      maxLines: 1,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 4.0, 0.0, 0.0),
+                                      child: Text(
+                                        gridViewAppListRecord.appName,
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },

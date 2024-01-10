@@ -4,18 +4,20 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'mini_app_page_model.dart';
 export 'mini_app_page_model.dart';
 
 class MiniAppPageWidget extends StatefulWidget {
   const MiniAppPageWidget({
-    super.key,
+    Key? key,
     required this.appName,
     required this.appPath,
-  });
+  }) : super(key: key);
 
   final String? appName;
   final String? appPath;
@@ -82,7 +84,7 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
             borderRadius: 30.0,
             borderWidth: 1.0,
             buttonSize: 60.0,
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_rounded,
               color: Colors.white,
               size: 30.0,
@@ -102,7 +104,7 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
                   fontSize: 22.0,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
