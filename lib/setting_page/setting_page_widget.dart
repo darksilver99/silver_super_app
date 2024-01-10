@@ -133,12 +133,21 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 ),
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Text(
-                    'Available app',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Space Grotesk',
-                          fontWeight: FontWeight.normal,
-                        ),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onLongPress: () async {
+                      FFAppState().installedList = [];
+                    },
+                    child: Text(
+                      'Available app',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Space Grotesk',
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
                   ),
                 ),
                 Expanded(
