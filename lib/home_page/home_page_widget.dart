@@ -1,3 +1,5 @@
+import 'package:silver_super_app/custom_toon/custom_toon.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -145,6 +147,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ) ??
                                         false;
                                 if (confirmDialogResponse) {
+                                  uninstallMiniApp(installedListItem);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(

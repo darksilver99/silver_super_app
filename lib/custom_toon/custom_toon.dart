@@ -13,22 +13,22 @@ checkPermission(url, appName, appIcon) async {
     final info = await deviceInfo.androidInfo;
     print("info.version.release : ${info.version.release}");
     if (int.parse(info.version.release) >= 13) {
-      return download(url, appName , appIcon);
+      return download(url, appName, appIcon);
     } else {
       var status = await Permission.storage.request();
       if (status.isGranted) {
-        return download(url, appName , appIcon);
+        return download(url, appName, appIcon);
       }
     }
   } else {
     var status = await Permission.storage.request();
     if (status.isGranted) {
-      return download(url, appName , appIcon);
+      return download(url, appName, appIcon);
     }
   }
 }
 
-download(url, appName , appIcon) async {
+download(url, appName, appIcon) async {
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
     var dir = url.toString().split('/').last.replaceAll(".zip", "");
@@ -36,13 +36,13 @@ download(url, appName , appIcon) async {
     final outFile = File('${appDocumentsDir.path}/$dir.zip');
     await outFile.writeAsBytes(response.bodyBytes, flush: true);
     // print("outFile.path : ${outFile.path}");
-    return unzipFile(outFile.path, dir, appName, url , appIcon);
+    return unzipFile(outFile.path, dir, appName, url, appIcon);
   } else {
     throw Exception('Failed to download file: ${response.statusCode}');
   }
 }
 
-Future<Map<String, dynamic>> unzipFile(path, dir, appName, url , appIcon) async {
+Future<Map<String, dynamic>> unzipFile(path, dir, appName, url, appIcon) async {
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
   var unzipPath = path.toString().replaceAll('$dir.zip', '');
@@ -69,4 +69,12 @@ isInstall(url) {
     return FFAppState().installedList[index];
   }
   return null;
+}
+
+uninstallMiniApp(obj) {
+  print(obj);
+  print(obj.runtimeType);
+  FFAppState().update(() {
+    FFAppState().removeFromInstalledList(obj);
+  });
 }
