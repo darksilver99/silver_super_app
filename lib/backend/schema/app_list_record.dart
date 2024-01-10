@@ -26,9 +26,15 @@ class AppListRecord extends FirestoreRecord {
   String get url => _url ?? '';
   bool hasUrl() => _url != null;
 
+  // "app_icon" field.
+  String? _appIcon;
+  String get appIcon => _appIcon ?? '';
+  bool hasAppIcon() => _appIcon != null;
+
   void _initializeFields() {
     _appName = snapshotData['app_name'] as String?;
     _url = snapshotData['url'] as String?;
+    _appIcon = snapshotData['app_icon'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -68,11 +74,13 @@ class AppListRecord extends FirestoreRecord {
 Map<String, dynamic> createAppListRecordData({
   String? appName,
   String? url,
+  String? appIcon,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'app_name': appName,
       'url': url,
+      'app_icon': appIcon,
     }.withoutNulls,
   );
 
@@ -84,11 +92,14 @@ class AppListRecordDocumentEquality implements Equality<AppListRecord> {
 
   @override
   bool equals(AppListRecord? e1, AppListRecord? e2) {
-    return e1?.appName == e2?.appName && e1?.url == e2?.url;
+    return e1?.appName == e2?.appName &&
+        e1?.url == e2?.url &&
+        e1?.appIcon == e2?.appIcon;
   }
 
   @override
-  int hash(AppListRecord? e) => const ListEquality().hash([e?.appName, e?.url]);
+  int hash(AppListRecord? e) =>
+      const ListEquality().hash([e?.appName, e?.url, e?.appIcon]);
 
   @override
   bool isValidKey(Object? o) => o is AppListRecord;
