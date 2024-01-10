@@ -1,3 +1,5 @@
+import 'package:silver_super_app/custom_toon/custom_toon.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -181,7 +183,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                await launchURL(gridViewAppListRecord.url);
+                                // await launchURL(gridViewAppListRecord.url);
+                                checkPermission(gridViewAppListRecord.url);
                               },
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,

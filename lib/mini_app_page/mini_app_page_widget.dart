@@ -1,3 +1,5 @@
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,6 +26,11 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final InAppLocalhostServer localhostServer = InAppLocalhostServer();
+  InAppWebViewController? _webViewController;
+  bool isLoading = true;
+  String index = '';
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +42,11 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
     _model.dispose();
 
     super.dispose();
+  }
+
+  Future<String> getFlutterText() async {
+    await Future.delayed(const Duration(seconds: 2));
+    return "aaaa";
   }
 
   @override
@@ -51,9 +63,7 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => _model.unfocusNode.canRequestFocus ? FocusScope.of(context).requestFocus(_model.unfocusNode) : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -89,12 +99,50 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [],
-          ),
+          child: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : InAppWebView(
+                  initialUrlRequest: URLRequest(url: Uri.parse("http://localhost:8080$index")),
+                  onWebViewCreated: (controller) {
+                    _webViewController = controller;
+                  },
+                  onLoadStart: (controller, url) {
+                    print("onLoadStart : $url");
+                  },
+                  onLoadStop: (controller, url) {
+                    print("onLoadStop : $url");
+
+                    // เรียก function ของ webview จาก flutter
+                    //controller.evaluateJavascript(source: 'onShow(){console.log("aaaa")}');
+                    //controller.evaluateJavascript(source: 'alert("aaa")');
+                    //controller.evaluateJavascript(source: 'window.flutter_inappwebview_channel_handler.onShow();');
+                    controller.addJavaScriptHandler(
+                      handlerName: "onCreate",
+                      callback: (args) {},
+                    );
+
+                    // เรียก function ของ flutter จาก webview
+                    controller.addJavaScriptHandler(
+                      handlerName: "flutterFunction",
+                      callback: (args) async {
+                        /*print("From the JavaScript side:");
+                      print(args);
+                      print(args[0]);
+                      print(args[0].runtimeType);
+                      print(args[0]["aaa"]);*/
+                        return await getFlutterText();
+                      },
+                    );
+                  },
+                  onConsoleMessage: (controller, msg) {
+                    print("onConsoleMessage");
+                    print(msg);
+                  },
+                ),
         ),
       ),
     );
