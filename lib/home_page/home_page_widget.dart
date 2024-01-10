@@ -108,7 +108,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ParamType.String,
                                     ),
                                     'appPath': serializeParam(
-                                      'aaaa',
+                                      getJsonField(
+                                        installedListItem,
+                                        r'''$.appPath''',
+                                      ).toString(),
                                       ParamType.String,
                                     ),
                                   }.withoutNulls,

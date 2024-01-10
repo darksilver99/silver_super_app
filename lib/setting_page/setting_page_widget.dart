@@ -184,45 +184,42 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!false) {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: GestureDetector(
-                                            onTap: () => _model
-                                                    .unfocusNode.canRequestFocus
-                                                ? FocusScope.of(context)
-                                                    .requestFocus(
-                                                        _model.unfocusNode)
-                                                : FocusScope.of(context)
-                                                    .unfocus(),
-                                            child: InstallingViewWidget(
-                                              url: gridViewAppListRecord.url,
-                                            ),
+                                  await showDialog(
+                                    context: context,
+                                    builder: (dialogContext) {
+                                      return Dialog(
+                                        insetPadding: EdgeInsets.zero,
+                                        backgroundColor: Colors.transparent,
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: InstallingViewWidget(
+                                            url: gridViewAppListRecord.url,
                                           ),
-                                        );
-                                      },
-                                    ).then((value) =>
-                                        safeSetState(() => _model.rs = value));
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) =>
+                                      safeSetState(() => _model.rs = value));
 
-                                    if ((_model.rs != null) && _model.rs!) {
-                                      setState(() {
-                                        FFAppState().installedList =
-                                            FFAppState()
-                                                .testObject
-                                                .toList()
-                                                .cast<dynamic>();
-                                      });
+                                  if ((_model.rs != null) && _model.rs!) {
+                                    setState(() {
+                                      FFAppState().installedList = FFAppState()
+                                          .testObject
+                                          .toList()
+                                          .cast<dynamic>();
+                                    });
 
-                                      context.goNamed('HomePage');
-                                    }
+                                    context.goNamed('HomePage');
                                   }
 
                                   setState(() {});
