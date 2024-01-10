@@ -133,12 +133,21 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 ),
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Text(
-                    'Available app',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Space Grotesk',
-                          fontWeight: FontWeight.normal,
-                        ),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onLongPress: () async {
+                      FFAppState().installedList = [];
+                    },
+                    child: Text(
+                      'Available app',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Space Grotesk',
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -208,21 +217,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         ),
                                       );
                                     },
-                                  ).then((value) =>
-                                      safeSetState(() => _model.rs = value));
-
-                                  if ((_model.rs != null) && _model.rs!) {
-                                    setState(() {
-                                      FFAppState().installedList = FFAppState()
-                                          .testObject
-                                          .toList()
-                                          .cast<dynamic>();
-                                    });
-
-                                    context.goNamed('HomePage');
-                                  }
-
-                                  setState(() {});
+                                  ).then((value) => setState(() {}));
                                 },
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
