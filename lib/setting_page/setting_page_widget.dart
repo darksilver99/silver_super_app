@@ -215,6 +215,8 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                             url: gridViewAppListRecord.url,
                                             appName:
                                                 gridViewAppListRecord.appName,
+                                            appIcon:
+                                                gridViewAppListRecord.appIcon,
                                           ),
                                         ),
                                       );
