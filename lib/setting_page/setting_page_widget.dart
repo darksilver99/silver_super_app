@@ -239,7 +239,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.circular(8.0),
                                             child: Image.network(
-                                              'https://images.unsplash.com/photo-1558050032-160f36233a07?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxtZWNoYW5pY2FsJTIwa2V5Ym9hcmR8ZW58MHx8fHwxNzA0NzgwMDY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                              gridViewAppListRecord.appIcon,
                                               fit: BoxFit.cover,
                                             ),
                                           ),

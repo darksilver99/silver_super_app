@@ -187,7 +187,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.network(
-                                            'https://picsum.photos/seed/108/600',
+                                            getJsonField(
+                                              installedListItem,
+                                              r'''$.appIcon''',
+                                            ).toString(),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
