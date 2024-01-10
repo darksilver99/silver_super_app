@@ -1,0 +1,126 @@
+{
+  "project_info": {
+    "project_number": "622357353461",
+    "project_id": "silver-65166",
+    "storage_bucket": "silver-65166.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622357353461:android:86d11bb54f0a1c15b4c6bc",
+        "android_client_info": {
+          "package_name": "com.silver.sboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-oEqqV_yGbxKu93tbIoU_3rIb_aPh0xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.silverproject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622357353461:android:ace4c465e45d8e2fb4c6bc",
+        "android_client_info": {
+          "package_name": "com.silver.silversuperapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-oEqqV_yGbxKu93tbIoU_3rIb_aPh0xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.silverproject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622357353461:android:85ffd13fa25875a8b4c6bc",
+        "android_client_info": {
+          "package_name": "com.silverproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622357353461-qp9qsn3d0kobcahtuv6s5epbvnhvaneo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.silverproject",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-oEqqV_yGbxKu93tbIoU_3rIb_aPh0xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.silverproject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
