@@ -5,6 +5,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
+import 'package:silver_super_app/app_state.dart';
 
 checkPermission(url, appName) async {
   if (Platform.isAndroid) {
@@ -35,13 +36,13 @@ download(url, appName) async {
     final outFile = File('${appDocumentsDir.path}/$dir.zip');
     await outFile.writeAsBytes(response.bodyBytes, flush: true);
     // print("outFile.path : ${outFile.path}");
-    return unzipFile(outFile.path, dir, appName);
+    return unzipFile(outFile.path, dir, appName, url);
   } else {
     throw Exception('Failed to download file: ${response.statusCode}');
   }
 }
 
-Future<Map<String, dynamic>> unzipFile(path, dir, appName) async {
+Future<Map<String, dynamic>> unzipFile(path, dir, appName, url) async {
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
   var unzipPath = path.toString().replaceAll('$dir.zip', '');
@@ -56,5 +57,16 @@ Future<Map<String, dynamic>> unzipFile(path, dir, appName) async {
     }
   }
   var newPath = path.toString().replaceAll('.zip', '');
-  return {"appName": appName, "appPath": "$newPath/index.html"};
+  return {"appName": appName, "appPath": "$newPath/index.html", "url": url};
+}
+
+isInstall(url) {
+  print(url);
+  print(FFAppState().installedList);
+  //bool containsUrl = dataList.any((map) => map['url'] == targetUrl);
+  int index = FFAppState().installedList.indexWhere((map) => map['url'] == url);
+  if (index != -1) {
+    return FFAppState().installedList[index];
+  }
+  return null;
 }
