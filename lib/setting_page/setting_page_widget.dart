@@ -1,3 +1,5 @@
+import 'package:silver_super_app/custom_toon/custom_toon.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/installing_view_widget.dart';
@@ -193,6 +195,25 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+
+                                  var installData = isInstall(gridViewAppListRecord.url);
+                                  if (installData != null) {
+                                    context.pushNamed(
+                                      'MiniAppPage',
+                                      queryParameters: {
+                                        'appName': serializeParam(
+                                          installData["appName"],
+                                          ParamType.String,
+                                        ),
+                                        'appPath': serializeParam(
+                                          installData["appPath"],
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                    return;
+                                  }
+
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {

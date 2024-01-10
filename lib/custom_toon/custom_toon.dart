@@ -7,28 +7,28 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 import 'package:silver_super_app/app_state.dart';
 
-checkPermission(url, appName) async {
+checkPermission(url, appName, appIcon) async {
   if (Platform.isAndroid) {
     final deviceInfo = DeviceInfoPlugin();
     final info = await deviceInfo.androidInfo;
     print("info.version.release : ${info.version.release}");
     if (int.parse(info.version.release) >= 13) {
-      return download(url, appName);
+      return download(url, appName , appIcon);
     } else {
       var status = await Permission.storage.request();
       if (status.isGranted) {
-        return download(url, appName);
+        return download(url, appName , appIcon);
       }
     }
   } else {
     var status = await Permission.storage.request();
     if (status.isGranted) {
-      return download(url, appName);
+      return download(url, appName , appIcon);
     }
   }
 }
 
-download(url, appName) async {
+download(url, appName , appIcon) async {
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
     var dir = url.toString().split('/').last.replaceAll(".zip", "");
@@ -36,13 +36,13 @@ download(url, appName) async {
     final outFile = File('${appDocumentsDir.path}/$dir.zip');
     await outFile.writeAsBytes(response.bodyBytes, flush: true);
     // print("outFile.path : ${outFile.path}");
-    return unzipFile(outFile.path, dir, appName, url);
+    return unzipFile(outFile.path, dir, appName, url , appIcon);
   } else {
     throw Exception('Failed to download file: ${response.statusCode}');
   }
 }
 
-Future<Map<String, dynamic>> unzipFile(path, dir, appName, url) async {
+Future<Map<String, dynamic>> unzipFile(path, dir, appName, url , appIcon) async {
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
   var unzipPath = path.toString().replaceAll('$dir.zip', '');
@@ -57,7 +57,7 @@ Future<Map<String, dynamic>> unzipFile(path, dir, appName, url) async {
     }
   }
   var newPath = path.toString().replaceAll('.zip', '');
-  return {"appName": appName, "appPath": "$newPath/index.html", "url": url};
+  return {"appName": appName, "appPath": "$newPath/index.html", "url": url, "appIcon": appIcon};
 }
 
 isInstall(url) {

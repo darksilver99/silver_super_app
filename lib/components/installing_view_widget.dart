@@ -44,7 +44,7 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       //await Future.delayed(const Duration(milliseconds: 3000));
-      var path = await checkPermission(widget.url, widget.appName);
+      var path = await checkPermission(widget.url, widget.appName, widget.appIcon);
       setState(() {
         FFAppState().addToInstalledList(path);
       });
@@ -103,16 +103,13 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
                     text: 'Success',
                     options: FFButtonOptions(
                       height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).success,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Space Grotesk',
-                                color: Colors.white,
-                              ),
+                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                            fontFamily: 'Space Grotesk',
+                            color: Colors.white,
+                          ),
                       elevation: 3.0,
                       borderSide: BorderSide(
                         color: Colors.transparent,
