@@ -1,3 +1,5 @@
+import 'package:silver_super_app/custom_toon/custom_toon.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -37,9 +39,10 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 3000));
+      //await Future.delayed(const Duration(milliseconds: 3000));
+      var path = await checkPermission(widget.url);
       setState(() {
-        FFAppState().addToInstalledList(FFAppState().testObject);
+        FFAppState().addToInstalledList(path);
       });
       setState(() {
         _model.msg = 'Finished!';
