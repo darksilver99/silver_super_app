@@ -12,17 +12,17 @@ checkPermission(url) async {
     final info = await deviceInfo.androidInfo;
     print("info.version.release : ${info.version.release}");
     if (int.parse(info.version.release) >= 13) {
-      download(url);
+      return download(url);
     } else {
       var status = await Permission.storage.request();
       if (status.isGranted) {
-        download(url);
+        return download(url);
       }
     }
   } else {
     var status = await Permission.storage.request();
     if (status.isGranted) {
-      download(url);
+      return download(url);
     }
   }
 }
@@ -35,13 +35,13 @@ download(url) async {
     final outFile = File('${appDocumentsDir.path}/$appName.zip');
     await outFile.writeAsBytes(response.bodyBytes, flush: true);
     // print("outFile.path : ${outFile.path}");
-    unzipFile(outFile.path, appName);
+    return unzipFile(outFile.path, appName);
   } else {
     throw Exception('Failed to download file: ${response.statusCode}');
   }
 }
 
-Future<void> unzipFile(path, appName) async {
+Future<Map<String, dynamic>> unzipFile(path, appName) async {
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
   var unzipPath = path.toString().replaceAll('$appName.zip', '');
@@ -56,8 +56,5 @@ Future<void> unzipFile(path, appName) async {
     }
   }
   var newPath = path.toString().replaceAll('.zip', '');
-  /*setState(() {
-    index = "$newPath/index.html";
-    print("index : $index");
-  });*/
+  return {"appName": appName, "appPath": "$newPath/index.html"};
 }

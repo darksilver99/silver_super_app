@@ -184,7 +184,21 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 // await launchURL(gridViewAppListRecord.url);
-                                checkPermission(gridViewAppListRecord.url);
+                                var path = await checkPermission(gridViewAppListRecord.url);
+                                context.pushNamed(
+                                  'MiniAppPage',
+                                  queryParameters: {
+                                    'appName': serializeParam(
+                                      path["appName"],
+                                      ParamType.String,
+                                    ),
+                                    'appPath': serializeParam(
+                                      path["appPath"],
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
+
                               },
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,

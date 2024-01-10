@@ -1,3 +1,4 @@
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -30,18 +31,22 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
 
   final InAppLocalhostServer localhostServer = InAppLocalhostServer();
   InAppWebViewController? _webViewController;
-  bool isLoading = true;
-  String index = '';
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => MiniAppPageModel());
+
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await localhostServer.start();
+    });
   }
 
   @override
   void dispose() {
     _model.dispose();
+
+    localhostServer.close();
 
     super.dispose();
   }
@@ -103,48 +108,44 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : InAppWebView(
-                  initialUrlRequest: URLRequest(url: Uri.parse("http://localhost:8080$index")),
-                  onWebViewCreated: (controller) {
-                    _webViewController = controller;
-                  },
-                  onLoadStart: (controller, url) {
-                    print("onLoadStart : $url");
-                  },
-                  onLoadStop: (controller, url) {
-                    print("onLoadStop : $url");
+          child: InAppWebView(
+            initialUrlRequest: URLRequest(url: Uri.parse("http://localhost:8080${widget.appPath}")),
+            onWebViewCreated: (controller) {
+              _webViewController = controller;
+            },
+            onLoadStart: (controller, url) {
+              print("onLoadStart : $url");
+            },
+            onLoadStop: (controller, url) {
+              print("onLoadStop : $url");
 
-                    // เรียก function ของ webview จาก flutter
-                    //controller.evaluateJavascript(source: 'onShow(){console.log("aaaa")}');
-                    //controller.evaluateJavascript(source: 'alert("aaa")');
-                    //controller.evaluateJavascript(source: 'window.flutter_inappwebview_channel_handler.onShow();');
-                    controller.addJavaScriptHandler(
-                      handlerName: "onCreate",
-                      callback: (args) {},
-                    );
+              // เรียก function ของ webview จาก flutter
+              //controller.evaluateJavascript(source: 'onShow(){console.log("aaaa")}');
+              //controller.evaluateJavascript(source: 'alert("aaa")');
+              //controller.evaluateJavascript(source: 'window.flutter_inappwebview_channel_handler.onShow();');
+              controller.addJavaScriptHandler(
+                handlerName: "onCreate",
+                callback: (args) {},
+              );
 
-                    // เรียก function ของ flutter จาก webview
-                    controller.addJavaScriptHandler(
-                      handlerName: "flutterFunction",
-                      callback: (args) async {
-                        /*print("From the JavaScript side:");
+              // เรียก function ของ flutter จาก webview
+              controller.addJavaScriptHandler(
+                handlerName: "flutterFunction",
+                callback: (args) async {
+                  /*print("From the JavaScript side:");
                       print(args);
                       print(args[0]);
                       print(args[0].runtimeType);
                       print(args[0]["aaa"]);*/
-                        return await getFlutterText();
-                      },
-                    );
-                  },
-                  onConsoleMessage: (controller, msg) {
-                    print("onConsoleMessage");
-                    print(msg);
-                  },
-                ),
+                  return await getFlutterText();
+                },
+              );
+            },
+            onConsoleMessage: (controller, msg) {
+              print("onConsoleMessage");
+              print(msg);
+            },
+          ),
         ),
       ),
     );
