@@ -94,6 +94,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
+                          FFAppState().installedList = [];
                           GoRouter.of(context).prepareAuthEvent();
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();

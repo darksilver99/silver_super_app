@@ -293,6 +293,7 @@ class _RegisterPageWidgetState extends State<RegisterPageWidget> {
                               !_model.formKey.currentState!.validate()) {
                             return;
                           }
+                          FFAppState().installedList = [];
                           GoRouter.of(context).prepareAuthEvent();
                           if (_model.passwordTextController.text !=
                               _model.confirmPasswordTextController.text) {
