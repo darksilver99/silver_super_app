@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,12 @@ import 'installing_view_model.dart';
 export 'installing_view_model.dart';
 
 class InstallingViewWidget extends StatefulWidget {
-  const InstallingViewWidget({Key? key}) : super(key: key);
+  const InstallingViewWidget({
+    Key? key,
+    required this.url,
+  }) : super(key: key);
+
+  final String? url;
 
   @override
   _InstallingViewWidgetState createState() => _InstallingViewWidgetState();
@@ -28,6 +34,14 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => InstallingViewModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 3000));
+      setState(() {
+        _model.msg = 'Finished!';
+      });
+    });
   }
 
   @override
@@ -61,24 +75,12 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
                 color: FlutterFlowTheme.of(context).secondaryText,
                 size: 56.0,
               ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  await Future.delayed(const Duration(milliseconds: 3000));
-                  setState(() {
-                    _model.msg = 'Finished';
-                  });
-                },
-                child: Text(
-                  _model.msg,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Space Grotesk',
-                        fontSize: 24.0,
-                      ),
-                ),
+              Text(
+                _model.msg,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Space Grotesk',
+                      fontSize: 24.0,
+                    ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),

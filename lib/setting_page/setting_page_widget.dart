@@ -202,7 +202,9 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                                       _model.unfocusNode)
                                               : FocusScope.of(context)
                                                   .unfocus(),
-                                          child: InstallingViewWidget(),
+                                          child: InstallingViewWidget(
+                                            url: gridViewAppListRecord.url,
+                                          ),
                                         ),
                                       );
                                     },
