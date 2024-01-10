@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive.dart';
@@ -43,14 +44,17 @@ download(url, appName, appIcon) async {
 }
 
 Future<Map<String, dynamic>> unzipFile(path, dir, appName, url, appIcon) async {
+  print("unzipFile : $dir");
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
   var unzipPath = path.toString().replaceAll('$dir.zip', '');
-  // print("unzipPath : $unzipPath");
+  print("unzipPath : $unzipPath");
+
   for (final file in archive) {
     final fileName = '$unzipPath/${file.name}';
-    // print("fileName : $fileName");
+    //print("fileName : $fileName");
     if (file.isFile && !fileName.contains("__MACOSX")) {
+      // print("fileName : $fileName");
       final outFile = File(fileName);
       await outFile.create(recursive: true);
       await outFile.writeAsBytes(file.content);
