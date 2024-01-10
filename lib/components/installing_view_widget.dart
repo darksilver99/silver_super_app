@@ -15,9 +15,11 @@ class InstallingViewWidget extends StatefulWidget {
   const InstallingViewWidget({
     Key? key,
     required this.url,
+    required this.appName,
   }) : super(key: key);
 
   final String? url;
+  final String? appName;
 
   @override
   _InstallingViewWidgetState createState() => _InstallingViewWidgetState();
