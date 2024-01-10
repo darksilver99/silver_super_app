@@ -39,6 +39,9 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 3000));
       setState(() {
+        FFAppState().addToInstalledList(FFAppState().testObject);
+      });
+      setState(() {
         _model.msg = 'Finished!';
       });
     });
