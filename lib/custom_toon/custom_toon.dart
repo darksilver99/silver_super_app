@@ -6,45 +6,45 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:http/http.dart' as http;
 
-checkPermission(url) async {
+checkPermission(url, appName) async {
   if (Platform.isAndroid) {
     final deviceInfo = DeviceInfoPlugin();
     final info = await deviceInfo.androidInfo;
     print("info.version.release : ${info.version.release}");
     if (int.parse(info.version.release) >= 13) {
-      return download(url);
+      return download(url, appName);
     } else {
       var status = await Permission.storage.request();
       if (status.isGranted) {
-        return download(url);
+        return download(url, appName);
       }
     }
   } else {
     var status = await Permission.storage.request();
     if (status.isGranted) {
-      return download(url);
+      return download(url, appName);
     }
   }
 }
 
-download(url) async {
+download(url, appName) async {
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
-    var appName = url.toString().split('/').last.replaceAll(".zip", "");
+    var dir = url.toString().split('/').last.replaceAll(".zip", "");
     final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
-    final outFile = File('${appDocumentsDir.path}/$appName.zip');
+    final outFile = File('${appDocumentsDir.path}/$dir.zip');
     await outFile.writeAsBytes(response.bodyBytes, flush: true);
     // print("outFile.path : ${outFile.path}");
-    return unzipFile(outFile.path, appName);
+    return unzipFile(outFile.path, dir, appName);
   } else {
     throw Exception('Failed to download file: ${response.statusCode}');
   }
 }
 
-Future<Map<String, dynamic>> unzipFile(path, appName) async {
+Future<Map<String, dynamic>> unzipFile(path, dir, appName) async {
   final bytes = File(path).readAsBytesSync();
   final archive = ZipDecoder().decodeBytes(bytes);
-  var unzipPath = path.toString().replaceAll('$appName.zip', '');
+  var unzipPath = path.toString().replaceAll('$dir.zip', '');
   // print("unzipPath : $unzipPath");
   for (final file in archive) {
     final fileName = '$unzipPath/${file.name}';

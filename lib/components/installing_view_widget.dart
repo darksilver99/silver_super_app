@@ -42,7 +42,7 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       //await Future.delayed(const Duration(milliseconds: 3000));
-      var path = await checkPermission(widget.url);
+      var path = await checkPermission(widget.url, widget.appName);
       setState(() {
         FFAppState().addToInstalledList(path);
       });
