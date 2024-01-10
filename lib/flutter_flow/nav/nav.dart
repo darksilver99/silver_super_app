@@ -110,6 +110,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/miniAppPage',
           builder: (context, params) => MiniAppPageWidget(
             appName: params.getParam('appName', ParamType.String),
+            appPath: params.getParam('appPath', ParamType.String),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
