@@ -105,6 +105,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ).toString(),
                                       ParamType.String,
                                     ),
+                                    'appPath': serializeParam(
+                                      'aaaa',
+                                      ParamType.String,
+                                    ),
                                   }.withoutNulls,
                                 );
                               },

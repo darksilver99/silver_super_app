@@ -11,9 +11,11 @@ class MiniAppPageWidget extends StatefulWidget {
   const MiniAppPageWidget({
     super.key,
     required this.appName,
+    required this.appPath,
   });
 
   final String? appName;
+  final String? appPath;
 
   @override
   _MiniAppPageWidgetState createState() => _MiniAppPageWidgetState();
