@@ -76,9 +76,34 @@ isInstall(url) {
 }
 
 uninstallMiniApp(obj) {
-  print(obj);
-  print(obj.runtimeType);
-  FFAppState().update(() {
-    FFAppState().removeFromInstalledList(obj);
-  });
+  //zip
+  print(obj["appPath"].toString().replaceAll("/index.html", '.zip'));
+  File file = File(obj["appPath"].toString().replaceAll("/index.html", '.zip'));
+  if (file.existsSync()) {
+    try {
+      // Delete the file
+      file.deleteSync();
+      print('File deleted successfully');
+    } catch (e) {
+      print('Error deleting file: $e');
+    }
+  } else {
+    print('File does not exist');
+  }
+
+  Directory directory = Directory(obj["appPath"].toString().replaceAll("/index.html", ''));
+  if (directory.existsSync()) {
+    try {
+      // Delete the directory and its contents
+      directory.deleteSync(recursive: true);
+      FFAppState().update(() {
+        FFAppState().removeFromInstalledList(obj);
+      });
+      print('Folder deleted successfully');
+    } catch (e) {
+      print('Error deleting folder: $e');
+    }
+  } else {
+    print('File does not exist');
+  }
 }
