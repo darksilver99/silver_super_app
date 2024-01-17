@@ -5,13 +5,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
 
 class LoginPageWidget extends StatefulWidget {
-  const LoginPageWidget({Key? key}) : super(key: key);
+  const LoginPageWidget({super.key});
 
   @override
   _LoginPageWidgetState createState() => _LoginPageWidgetState();
@@ -64,7 +63,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Form(
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
@@ -82,7 +81,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.emailTextController,
                         focusNode: _model.textFieldFocusNode1,
@@ -119,7 +118,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.email_rounded,
                           ),
                         ),
@@ -131,7 +130,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: TextFormField(
                         controller: _model.passwordTextController,
                         focusNode: _model.textFieldFocusNode2,
@@ -168,7 +167,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.key_rounded,
                           ),
                           suffixIcon: InkWell(
@@ -192,7 +191,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -221,7 +220,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           if (_model.formKey.currentState == null ||
@@ -246,9 +245,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
@@ -257,7 +256,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     color: Colors.white,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),
@@ -267,7 +266,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           FFAppState().installedList = [];
@@ -281,15 +280,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                           context.goNamedAuth('HomePage', context.mounted);
                         },
                         text: 'Continue with Facebook',
-                        icon: FaIcon(
+                        icon: const FaIcon(
                           FontAwesomeIcons.facebook,
                         ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).info,
                           textStyle:
@@ -298,7 +297,48 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                     color: Colors.white,
                                   ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          FFAppState().installedList = [];
+                          GoRouter.of(context).prepareAuthEvent();
+                          final user =
+                              await authManager.signInWithGoogle(context);
+                          if (user == null) {
+                            return;
+                          }
+
+                          context.goNamedAuth('HomePage', context.mounted);
+                        },
+                        text: 'Continue with Google',
+                        icon: const FaIcon(
+                          FontAwesomeIcons.google,
+                        ),
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Space Grotesk',
+                                    color: const Color(0x95000000),
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

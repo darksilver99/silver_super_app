@@ -6,13 +6,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'setting_page_model.dart';
 export 'setting_page_model.dart';
 
 class SettingPageWidget extends StatefulWidget {
-  const SettingPageWidget({Key? key}) : super(key: key);
+  const SettingPageWidget({super.key});
 
   @override
   _SettingPageWidgetState createState() => _SettingPageWidgetState();
@@ -59,7 +58,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -69,22 +68,22 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   children: [
                     FFButtonWidget(
                       onPressed: () async {
-                        Function() _navigate = () {};
+                        Function() navigate = () {};
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: Text('Logout?'),
+                                  title: const Text('Logout?'),
                                   actions: [
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, false),
-                                      child: Text('Cancel'),
+                                      child: const Text('Cancel'),
                                     ),
                                     TextButton(
                                       onPressed: () => Navigator.pop(
                                           alertDialogContext, true),
-                                      child: Text('Confirm'),
+                                      child: const Text('Confirm'),
                                     ),
                                   ],
                                 );
@@ -97,24 +96,24 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                           await authManager.signOut();
                           GoRouter.of(context).clearRedirectLocation();
 
-                          _navigate = () =>
+                          navigate = () =>
                               context.goNamedAuth('LoginPage', context.mounted);
                         } else {
                           setState(() {});
                         }
 
-                        _navigate();
+                        navigate();
                       },
                       text: 'Logout',
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.logout_rounded,
                         size: 14.0,
                       ),
                       options: FFButtonOptions(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -123,7 +122,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                   fontSize: 12.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -133,7 +132,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                   ],
                 ),
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -153,7 +152,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: StreamBuilder<List<AppListRecord>>(
                       stream: queryAppListRecord(),
                       builder: (context, snapshot) {
@@ -176,7 +175,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                         return GridView.builder(
                           padding: EdgeInsets.zero,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             crossAxisSpacing: 10.0,
                             mainAxisSpacing: 10.0,
@@ -201,7 +200,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: GestureDetector(
@@ -256,7 +255,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         gridViewAppListRecord.appName,
