@@ -107,7 +107,7 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
           child: InAppWebView(
             initialUrlRequest: URLRequest(url: Uri.parse("http://localhost:8080${widget.appPath}")),

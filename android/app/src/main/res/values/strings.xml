@@ -2,5 +2,6 @@
 <resources>
     <string name="app_name">SilverSuperApp</string>
     <string name="facebook_app_id">228214630330729</string>
-               <string name="fb_login_protocol_scheme">fb228214630330729</string>
+    <string name="fb_login_protocol_scheme">fb228214630330729</string>
+    <string name="facebook_client_token">51656913287e914addd4fb17d6cf02bb</string>
 </resources>
