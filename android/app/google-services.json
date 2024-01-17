@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_id": "622357353461-tqqdoncn07pa6bm7ju8lu5n3hjrl3e43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.silver.sboard",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "622357353461-8n6aoajh8f6e82darp2ni7g6su7ku47s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -31,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_id": "622357353461-0vkff4i5ofa6f3pqihfg4c2uacok2oqf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.silverproject"
+                "bundle_id": "com.silver.sboard"
               }
             }
           ]
@@ -50,7 +58,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_id": "622357353461-4v45o9p80q2phcsm8iteofj0puadjd9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.silver.silversuperapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "622357353461-p35gvgc2f6og2r5vve8f5s3h6e535nlm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.silver.silversuperapp",
+            "certificate_hash": "75126eed65e824bf797af17cb664e17e433f5bd6"
+          }
+        },
+        {
+          "client_id": "622357353461-8n6aoajh8f6e82darp2ni7g6su7ku47s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -67,10 +91,10 @@
               "client_type": 3
             },
             {
-              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_id": "622357353461-0vkff4i5ofa6f3pqihfg4c2uacok2oqf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.silverproject"
+                "bundle_id": "com.silver.sboard"
               }
             }
           ]
@@ -94,7 +118,7 @@
           }
         },
         {
-          "client_id": "622357353461-3ohcvbvdghartfpoek5jflfpdo81tvbl.apps.googleusercontent.com",
+          "client_id": "622357353461-8n6aoajh8f6e82darp2ni7g6su7ku47s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -111,10 +135,10 @@
               "client_type": 3
             },
             {
-              "client_id": "622357353461-q9b2au1n7l0f8jc3qaksn4idqk981781.apps.googleusercontent.com",
+              "client_id": "622357353461-0vkff4i5ofa6f3pqihfg4c2uacok2oqf.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.silverproject"
+                "bundle_id": "com.silver.sboard"
               }
             }
           ]

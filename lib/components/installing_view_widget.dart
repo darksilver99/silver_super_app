@@ -5,19 +5,17 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'installing_view_model.dart';
 export 'installing_view_model.dart';
 
 class InstallingViewWidget extends StatefulWidget {
   const InstallingViewWidget({
-    Key? key,
+    super.key,
     required this.url,
     required this.appName,
     required this.appIcon,
-  }) : super(key: key);
+  });
 
   final String? url;
   final String? appName;
@@ -66,7 +64,7 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 0.7,
         height: 200.0,
@@ -75,7 +73,7 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +92,7 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
               ),
               if (_model.msg == 'Finished!')
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       //context.goNamed('HomePage');
@@ -103,15 +101,18 @@ class _InstallingViewWidgetState extends State<InstallingViewWidget> {
                     text: 'Success',
                     options: FFButtonOptions(
                       height: 40.0,
-                      padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).success,
-                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Space Grotesk',
-                            color: Colors.white,
-                          ),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Space Grotesk',
+                                color: Colors.white,
+                              ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
