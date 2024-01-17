@@ -305,12 +305,11 @@ packages:
   flutter_facebook_auth:
     dependency: "direct main"
     description:
-      path: facebook_auth
-      ref: b65ffb049c9f1e2704adbeb1aa19c61693c946a5
-      resolved-ref: b65ffb049c9f1e2704adbeb1aa19c61693c946a5
-      url: "https://github.com/asmengistu/flutter-facebook-auth"
-    source: git
-    version: "4.0.0"
+      name: flutter_facebook_auth
+      sha256: "50dc3eef562acbe1e4cfad478053c9c16f9eaac49ad14ec48f00ed9dae1ba0cd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.1+1"
   flutter_facebook_auth_platform_interface:
     dependency: transitive
     description:
