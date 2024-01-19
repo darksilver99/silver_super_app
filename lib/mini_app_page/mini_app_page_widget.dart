@@ -113,13 +113,36 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
             initialUrlRequest: URLRequest(url: Uri.parse("http://localhost:8080${widget.appPath}")),
             onWebViewCreated: (controller) {
               _webViewController = controller;
+              controller.setOptions(
+                options: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                    cacheEnabled: true,
+                    supportZoom: false
+                  ),
+                ),
+              );
             },
             onLoadStart: (controller, url) {
               print("onLoadStart : $url");
+              controller.setOptions(
+                options: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                      cacheEnabled: true,
+                      supportZoom: false
+                  ),
+                ),
+              );
             },
             onLoadStop: (controller, url) {
               print("onLoadStop : $url");
-
+              controller.setOptions(
+                options: InAppWebViewGroupOptions(
+                  crossPlatform: InAppWebViewOptions(
+                      cacheEnabled: true,
+                      supportZoom: false
+                  ),
+                ),
+              );
               controller.addJavaScriptHandler(
                 handlerName: "getUserData",
                 callback: (args) async {
@@ -129,7 +152,6 @@ class _MiniAppPageWidgetState extends State<MiniAppPageWidget> {
                   };
                 },
               );
-
             },
             onConsoleMessage: (controller, msg) {
               print("onConsoleMessage");
